@@ -22,7 +22,11 @@
 #include <wx/combobox.h>
 //*)
 #include <wx/dir.h>
+#include <wx/stdpaths.h>
+#include <wx/wfstream.h>
 #include <wx/textfile.h>
+
+#include "FileMerge.h"
 
 class sfxGUIDialog: public wxDialog
 {
@@ -40,13 +44,12 @@ class sfxGUIDialog: public wxDialog
         void OnButtonAbortClick(wxCommandEvent& event);
         //*)
 
-        public: void SetSource(wxString source);
-        private: SFX_SOURCE GetSourceType();
+        public: void SetSource(wxString path);
+        private: SFX_SOURCE GetSourceType(wxString path);
         private: SFX_TYPE GetSfxType();
-        private: wxString GetCommand();
-        private: wxString GetLauncherPath();
-        private: void CreateLauncherFile(wxString path);
-        private: void CreateConfigurationFile(wxString path);
+        private: wxString Create7zCommand(wxString source, wxString target, wxString temp, SFX_SOURCE srcType, SFX_TYPE sfxType, wxInt32 compression);
+        private: void CreateConfigurationFile(wxString path, wxString runFile);
+        private: void MergeFiles(wxString target, wxString sfx, wxString configuration, wxString archive);
         private: void EnableDisableControls(bool enable);
 
         //(*Identifiers(sfxGUIDialog)
