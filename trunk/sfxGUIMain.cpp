@@ -99,14 +99,13 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     FlexGridSizer5->AddGrowableCol(0);
     FlexGridSizer5->AddGrowableCol(2);
     ChoiceType = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
-    ChoiceType->SetSelection( ChoiceType->Append(_("Self Extracting Archive")) );
-    ChoiceType->Append(_("Self Extracting Installer"));
+    ChoiceType->SetSelection( ChoiceType->Append(_("Self Extracting Installer")) );
+    ChoiceType->Append(_("Self Extracting Archive"));
     ChoiceType->SetHelpText(_("SFX Archive:\n + extract files to a directory choosen by the user\n + usage: distribute compressed data files\n\nSFX Installer:\n + extract files to a temporary directory\n + execute a specific file after extraction\n + delete temporary files after completion\n + usage: distribute compressed applications"));
     FlexGridSizer5->Add(ChoiceType, 1, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextExecute = new wxStaticText(this, ID_STATICTEXT3, _("Execute File:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     FlexGridSizer5->Add(StaticTextExecute, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     ComboBoxExecute = new wxComboBox(this, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
-    ComboBoxExecute->Disable();
     FlexGridSizer5->Add(ComboBoxExecute, 1, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer2->Add(FlexGridSizer5, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -130,39 +129,57 @@ sfxGUIDialog::~sfxGUIDialog()
     //*)
 }
 
-void sfxGUIDialog::SetSource(wxString source)
+SFX_SOURCE sfxGUIDialog::GetSourceType(wxString path)
+{
+    // Check if path is a valid directory
+    if(wxDirExists(path))
+    {
+        return SFX_SOURCE_DIRECTORY;
+    }
+    // Check if path is a valid file
+    if(wxFileExists(path))
+    {
+        return SFX_SOURCE_FILE;
+    }
+
+    return SFX_SOURCE_INVALID;
+}
+
+void sfxGUIDialog::SetSource(wxString path)
 {
     SetCursor(wxCURSOR_WAIT);
 
-    TextCtrlSource->SetValue(source);
+    SFX_SOURCE type = GetSourceType(path);
+
+    TextCtrlSource->SetValue(path);
     TextCtrlTarget->Clear();
     ComboBoxExecute->Clear();
 
-    // check if source is a valid directory
-    if(GetSourceType() == SFX_SOURCE_DIRECTORY)
+    // check if path is a valid directory
+    if(type == SFX_SOURCE_DIRECTORY)
     {
-        TextCtrlTarget->SetValue(source + wxT(".exe"));
+        TextCtrlTarget->SetValue(path + wxT(".exe"));
         wxArrayString files;
-        wxDir::GetAllFiles(source, &files, wxT("*.*"), wxDIR_FILES); // get all files from initial directory (no sub-directories)
+        wxDir::GetAllFiles(path, &files, wxT("*.*"), wxDIR_FILES); // get all files from initial directory (no sub-directories)
         if(files.GetCount() > 0)
         {
             for(wxUint32 i=0; i<files.GetCount(); i++)
             {
-                files[i].Replace(source + wxT("\\"), wxT(""));
+                files[i].Replace(path + wxT("\\"), wxT(""));
                 ComboBoxExecute->Append(files[i]);
             }
         }
     }
 
-    // check if source is a valid file
-    if(GetSourceType() == SFX_SOURCE_FILE)
+    // check if path is a valid file
+    if(type == SFX_SOURCE_FILE)
     {
-        TextCtrlTarget->SetValue(source.BeforeLast('.') + wxT(".sfx.exe"));
-        ComboBoxExecute->Append(source.AfterLast('\\'));
+        TextCtrlTarget->SetValue(path.BeforeLast('.') + wxT(".sfx.exe"));
+        ComboBoxExecute->Append(path.AfterLast('\\'));
     }
 
     // check if soure is invalid
-    if(GetSourceType() == SFX_SOURCE_INVALID)
+    if(type == SFX_SOURCE_INVALID)
     {
         TextCtrlSource->Clear();
     }
@@ -191,24 +208,6 @@ void sfxGUIDialog::OnChoiceTypeSelect(wxCommandEvent& event)
     }
 }
 
-SFX_SOURCE sfxGUIDialog::GetSourceType()
-{
-    wxString source = TextCtrlSource->GetValue();
-
-    // Check if source is a valid directory
-    if(wxDirExists(source))
-    {
-        return SFX_SOURCE_DIRECTORY;
-    }
-    // Check if source is a valid file
-    if(wxFileExists(source))
-    {
-        return SFX_SOURCE_FILE;
-    }
-
-    return SFX_SOURCE_INVALID;
-}
-
 SFX_TYPE sfxGUIDialog::GetSfxType()
 {
     if(ChoiceType->GetSelection() > -1)
@@ -225,75 +224,35 @@ SFX_TYPE sfxGUIDialog::GetSfxType()
     return SFX_TYPE_UNKNOWN;
 }
 
-wxString sfxGUIDialog::GetCommand()
+wxString sfxGUIDialog::Create7zCommand(wxString source, wxString target, wxString temp, SFX_SOURCE srcType, SFX_TYPE sfxType, wxInt32 compression)
 {
-    SFX_TYPE sfxType = GetSfxType();
-    SFX_SOURCE sourceType = GetSourceType();
-
     wxString command = wxT("7zG.exe a");
-
-    command += wxString::Format(wxT(" -mx%i"), wxMax(0, 2*ChoiceCompression->GetSelection()-1));
+    command += wxString::Format(wxT(" -mx%i"), compression);
 
     if(sfxType == SFX_TYPE_ARCHIVE)
     {
         command += wxT(" -sfx\"7z.sfx\"");
+        command += wxT(" \"") + target + wxT("\"");
+        command += wxT(" \"") + source + wxT("\"");
     }
+
     if(sfxType == SFX_TYPE_INSTALLER)
     {
-        command += wxT(" -sfx\"7zS2.sfx\"");
-    }
-
-    command += wxT(" \"") + TextCtrlTarget->GetValue() + wxT("\"");
-    command += wxT(" \"") + TextCtrlSource->GetValue() + wxT("\"");
-
-    if(sourceType == SFX_SOURCE_DIRECTORY && sfxType == SFX_TYPE_INSTALLER)
-    {
-        command += wxT(" \"") + GetLauncherPath() + wxT("\"");
+        command += wxT(" \"") + temp + wxT("\"");
+        if(srcType == SFX_SOURCE_DIRECTORY)
+        {
+            command += wxT(" \"") + source + wxT("\\*\"");
+        }
+        else
+        {
+            command += wxT(" \"") + source + wxT("\"");
+        }
     }
 
     return command;
 }
 
-wxString sfxGUIDialog::GetLauncherPath()
-{
-    return TextCtrlTarget->GetValue().BeforeLast('\\') + wxT("\\autorun.cmd");
-}
-
-void sfxGUIDialog::CreateLauncherFile(wxString path)
-{
-    wxTextFile f;
-
-    // create file, or open if already exists
-    if(!f.Create(path))
-    {
-        f.Open(path);
-        f.Clear();
-    }
-
-    f.AddLine(wxT("@ECHO OFF"));
-    f.AddLine(wxT("MODE Con Cols=31 Lines=5"));
-    f.AddLine(wxT("TITLE DON'T CLOSE"));
-    f.AddLine(wxT("ECHO."));
-    f.AddLine(wxT("ECHO ### DON'T CLOSE THIS WINDOW ###"));
-    f.AddLine(wxT("ECHO."));
-    if(GetSourceType() == SFX_SOURCE_DIRECTORY)
-    {
-        wxString cwd = TextCtrlSource->GetValue().AfterLast('\\') + wxT("\\") + ComboBoxExecute->GetValue().BeforeLast('\\');
-        // if source is a directory, cwd is always valid
-        //if(!cwd.IsEmpty() && cwd != wxT("\\"))
-        //{
-            f.AddLine(wxT("CD \"") + cwd + wxT("\""));
-        //}
-    }
-    // FIXME: when using start without /wait , batch file exit and 7z SFX deletes temp files
-    //f.AddLine(wxT("START /wait ") + ComboBoxExecute->GetValue().AfterLast('\\'));
-    f.AddLine(wxT("\"") + ComboBoxExecute->GetValue().AfterLast('\\') + wxT("\""));
-
-    f.Write();
-    f.Close();
-}
-
-void sfxGUIDialog::CreateConfigurationFile(wxString path)
+void sfxGUIDialog::CreateConfigurationFile(wxString path, wxString runFile)
 {
     wxTextFile f;
 
@@ -305,11 +264,26 @@ void sfxGUIDialog::CreateConfigurationFile(wxString path)
     }
 
     f.AddLine(wxT(";!@Install@!UTF-8!"));
-    f.AddLine(wxT("RunProgram=\"") + ComboBoxExecute->GetValue() + wxT("\""));
+    f.AddLine(wxT("ExecuteFile=\"") + runFile + wxT("\""));
     f.AddLine(wxT(";!@InstallEnd@!"));
 
     f.Write();
     f.Close();
+}
+
+void sfxGUIDialog::MergeFiles(wxString target, wxString sfx, wxString configuration, wxString archive)
+{
+    wxArrayString files;
+    files.Add(sfx);
+    files.Add(configuration);
+    files.Add(archive);
+
+    FileMerge mergeDialog(0);
+    mergeDialog.Show();
+    mergeDialog.AddInputFiles(files);
+    mergeDialog.SetOutputFile(target);
+    mergeDialog.MergeFiles();
+    mergeDialog.Close();
 }
 
 void sfxGUIDialog::OnButtonCreateClick(wxCommandEvent& event)
@@ -318,21 +292,26 @@ void sfxGUIDialog::OnButtonCreateClick(wxCommandEvent& event)
 
     EnableDisableControls(false);
 
+    wxString sfxS2Path = wxStandardPaths::Get().GetExecutablePath().BeforeLast('\\') + wxT("\\7zS.sfx");
+    wxString sourcePath = TextCtrlSource->GetValue();
+    wxString targetPath = TextCtrlTarget->GetValue();
+    wxString tempPath = targetPath + wxT(".7z");
+    wxString configurationPath = targetPath.BeforeLast('\\') + wxT("\\config.txt");
+    wxString runFile = ComboBoxExecute->GetValue();
+    wxInt32 compression = wxMax(0, 2*ChoiceCompression->GetSelection()-1);
+    SFX_SOURCE srcType = GetSourceType(sourcePath);
     SFX_TYPE sfxType = GetSfxType();
-    SFX_SOURCE sourceType = GetSourceType();
-    wxString launcherPath = GetLauncherPath();
 
-    if(sourceType == SFX_SOURCE_DIRECTORY && sfxType == SFX_TYPE_INSTALLER)
-    {
-        CreateLauncherFile(launcherPath);
-    }
-
-    wxExecute(GetCommand(), wxEXEC_SYNC); // EXEC_SYNC to wait for 7zip
+    // EXEC_SYNC to wait for 7zip
+    wxExecute(Create7zCommand(sourcePath, targetPath, tempPath, srcType, sfxType, compression), wxEXEC_SYNC);
     Raise(); // focus back to this dialog after 7zip finished
 
-    if(sourceType == SFX_SOURCE_DIRECTORY && sfxType == SFX_TYPE_INSTALLER)
+    if(sfxType == SFX_TYPE_INSTALLER)
     {
-        wxRemoveFile(launcherPath);
+        CreateConfigurationFile(configurationPath, runFile);
+        MergeFiles(targetPath, sfxS2Path, configurationPath, tempPath);
+        wxRemoveFile(configurationPath);
+        wxRemoveFile(tempPath);
     }
 
     EnableDisableControls(true);

@@ -102,8 +102,8 @@
 							<object class="sizeritem">
 								<object class="wxChoice" name="ID_CHOICE1" variable="ChoiceType" member="yes">
 									<content>
-										<item>Self Extracting Archive</item>
 										<item>Self Extracting Installer</item>
+										<item>Self Extracting Archive</item>
 									</content>
 									<selection>0</selection>
 									<help>SFX Archive:&#x0A; + extract files to a directory choosen by the user&#x0A; + usage: distribute compressed data files&#x0A;&#x0A;SFX Installer:&#x0A; + extract files to a temporary directory&#x0A; + execute a specific file after extraction&#x0A; + delete temporary files after completion&#x0A; + usage: distribute compressed applications</help>
@@ -122,9 +122,7 @@
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
-								<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes">
-									<enabled>0</enabled>
-								</object>
+								<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes" />
 								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
