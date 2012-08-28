@@ -171,7 +171,7 @@
 								<label>Advanced SFX Installer Configuration:</label>
 								<orient>wxVERTICAL</orient>
 								<object class="sizeritem">
-									<object class="wxBoxSizer" variable="BoxSizerMenu" member="no">
+									<object class="wxFlexGridSizer" variable="FlexGridSizer7" member="no">
 										<object class="sizeritem">
 											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_TITLE" variable="BitmapButtonMenuTitle" member="yes">
 												<default>1</default>
@@ -221,6 +221,19 @@
 												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
 											</object>
 											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticTextOnlineHelp" member="yes">
+												<label>?</label>
+												<fg>wxSYS_COLOUR_HOTLIGHT</fg>
+												<font>
+													<underlined>1</underlined>
+												</font>
+												<tooltip>http://7zsfx.info/en/parameters.html</tooltip>
+											</object>
+											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
