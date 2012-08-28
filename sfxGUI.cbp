@@ -86,8 +86,8 @@
 			<Add library="libwsock32.a" />
 			<Add library="libodbc32.a" />
 		</Linker>
-		<Unit filename="FileMerge.cpp" />
-		<Unit filename="FileMerge.h" />
+		<Unit filename="resource.cpp" />
+		<Unit filename="resource.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
@@ -95,7 +95,6 @@
 		<Unit filename="sfxGUIApp.h" />
 		<Unit filename="sfxGUIMain.cpp" />
 		<Unit filename="sfxGUIMain.h" />
-		<Unit filename="wxsmith\FileMerge.wxs" />
 		<Unit filename="wxsmith\sfxGUIdialog.wxs" />
 		<Extensions>
 			<code_completion />
@@ -104,7 +103,6 @@
 				<gui name="wxWidgets" src="sfxGUIApp.cpp" main="sfxGUIDialog" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxDialog wxs="wxsmith/sfxGUIdialog.wxs" src="sfxGUIMain.cpp" hdr="sfxGUIMain.h" name="sfxGUIDialog" language="CPP" />
-					<wxDialog wxs="wxsmith/FileMerge.wxs" src="FileMerge.cpp" hdr="FileMerge.h" name="FileMerge" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

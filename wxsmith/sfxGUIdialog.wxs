@@ -22,28 +22,44 @@
 					</object>
 					<object class="sizeritem">
 						<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
-							<cols>2</cols>
+							<cols>3</cols>
 							<growablecols>0</growablecols>
 							<object class="sizeritem">
 								<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrlSource" member="yes">
 									<enabled>0</enabled>
-									<minsize>360,0</minsize>
+									<minsize>400,-1</minsize>
 								</object>
 								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
-								<object class="wxButton" name="ID_BUTTON2" variable="ButtonBrowse" member="yes">
-									<label>Browse...</label>
-									<handler function="OnButtonBrowseClick" entry="EVT_BUTTON" />
+								<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButtonSelectFile" member="yes">
+									<bitmap stock_id="wxART_NEW" />
+									<default>1</default>
+									<size>24,24</size>
+									<tooltip>Select Source File...</tooltip>
+									<handler function="OnBitmapButtonSelectFileClick" entry="EVT_BUTTON" />
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButtonSelectDirectory" member="yes">
+									<bitmap stock_id="wxART_FILE_OPEN" />
+									<default>1</default>
+									<size>24,24</size>
+									<tooltip>Select Source Directory...</tooltip>
+									<handler function="OnBitmapButtonSelectDirectoryClick" entry="EVT_BUTTON" />
+								</object>
+								<flag>wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -59,9 +75,7 @@
 							<cols>2</cols>
 							<growablecols>0</growablecols>
 							<object class="sizeritem">
-								<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrlTarget" member="yes">
-									<enabled>0</enabled>
-								</object>
+								<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrlTarget" member="yes" />
 								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
@@ -77,14 +91,15 @@
 										<item>Ultra</item>
 									</content>
 									<selection>3</selection>
-									<help>Compression Method</help>
+									<tooltip>Compression Method</tooltip>
 								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
@@ -97,7 +112,7 @@
 					</object>
 					<object class="sizeritem">
 						<object class="wxFlexGridSizer" variable="FlexGridSizer5" member="no">
-							<cols>3</cols>
+							<cols>4</cols>
 							<growablecols>0,2</growablecols>
 							<object class="sizeritem">
 								<object class="wxChoice" name="ID_CHOICE1" variable="ChoiceType" member="yes">
@@ -122,13 +137,140 @@
 								<option>1</option>
 							</object>
 							<object class="sizeritem">
-								<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes" />
+								<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes">
+									<help>Select a file that will be executed (Installer only)&#x0A;+ system files (i.e. notepad.exe) can be used&#x0A;+ commandline parameters can be appended after file name&#x0A;</help>
+								</object>
 								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
+							<object class="sizeritem">
+								<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBoxAdvanced" member="yes">
+									<label>Advanced</label>
+									<tooltip>Enable Advanced Mode</tooltip>
+									<handler function="OnCheckBoxAdvancedClick" entry="EVT_CHECKBOX" />
+								</object>
+								<flag>wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="spacer">
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxPanel" name="ID_PANEL2" variable="PanelAdvanced" member="yes">
+							<hidden>1</hidden>
+							<object class="wxStaticBoxSizer" variable="StaticBoxSizerAdvanced" member="no">
+								<label>Advanced SFX Installer Configuration:</label>
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<object class="wxBoxSizer" variable="BoxSizerMenu" member="no">
+										<object class="sizeritem">
+											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_TITLE" variable="BitmapButtonMenuTitle" member="yes">
+												<default>1</default>
+												<size>24,24</size>
+												<tooltip>Insert Title Command</tooltip>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCE::TITLE__PNG, sizeof RESOURCE::TITLE__PNG);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCE::TITLE__DISABLED__PNG, sizeof RESOURCE::TITLE__DISABLED__PNG);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<style>0</style>
+												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
+											</object>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_BEGINPROMPT" variable="BitmapButtonMenuBeginPrompt" member="yes">
+												<default>1</default>
+												<size>24,24</size>
+												<tooltip>Insert BeginPrompt Command</tooltip>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCE::REPORT__PNG, sizeof RESOURCE::REPORT__PNG);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCE::REPORT__DISABLED__PNG, sizeof RESOURCE::REPORT__DISABLED__PNG);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<style>0</style>
+												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
+											</object>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_DIRECTORY" variable="BitmapButtonMenuDirectory" member="yes">
+												<default>1</default>
+												<size>24,24</size>
+												<tooltip>Insert Directory Command</tooltip>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCE::FOLDER__OPEN__PNG, sizeof RESOURCE::FOLDER__OPEN__PNG);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCE::FOLDER__OPEN__DISABLED__PNG, sizeof RESOURCE::FOLDER__OPEN__DISABLED__PNG);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<style>0</style>
+												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
+											</object>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_EXECUTEFILE" variable="BitmapButtonMenuExecuteFile" member="yes">
+												<default>1</default>
+												<size>24,24</size>
+												<tooltip>Insert ExecuteFile Command</tooltip>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCE::EXECUTE__FILE__PNG, sizeof RESOURCE::EXECUTE__FILE__PNG);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCE::EXECUTE__FILE__DISABLED__PNG, sizeof RESOURCE::EXECUTE__FILE__DISABLED__PNG);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<style>0</style>
+												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
+											</object>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+									</object>
+									<flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxFlexGridSizer" variable="FlexGridSizer6" member="no">
+										<cols>1</cols>
+										<growablecols>0</growablecols>
+										<growablerows>1</growablerows>
+										<object class="sizeritem">
+											<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextConfigHeader" member="yes">
+												<label>;!@Install@!UTF-8!</label>
+												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
+												<style>wxNO_BORDER</style>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrlAdvanced" member="yes">
+												<value>ExecuteFile=&quot;&quot;</value>
+												<size>0,100</size>
+												<style>wxTE_MULTILINE</style>
+											</object>
+											<flag>wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticTextConfigFooter" member="yes">
+												<label>;!@InstallEnd@!</label>
+												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
+												<style>wxNO_BORDER</style>
+											</object>
+											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+									</object>
+									<flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+								</object>
+							</object>
 						</object>
 						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
@@ -139,6 +281,10 @@
 			<object class="sizeritem">
 				<object class="wxButton" name="ID_BUTTON1" variable="ButtonCreate" member="yes">
 					<label>Create SFX</label>
+					<focused>1</focused>
+					<font>
+						<weight>bold</weight>
+					</font>
 					<handler function="OnButtonCreateClick" entry="EVT_BUTTON" />
 				</object>
 				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
@@ -148,6 +294,9 @@
 		</object>
 		<object class="wxDirDialog" variable="DirDialogSource" member="yes">
 			<message>Select directory</message>
+		</object>
+		<object class="wxFileDialog" variable="FileDialogSource" member="yes">
+			<message>Select file</message>
 		</object>
 	</object>
 </wxsmith>
