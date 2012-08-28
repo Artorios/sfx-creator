@@ -54,6 +54,7 @@ const long sfxGUIDialog::ID_BITMAPBUTTON_TITLE = wxNewId();
 const long sfxGUIDialog::ID_BITMAPBUTTON_BEGINPROMPT = wxNewId();
 const long sfxGUIDialog::ID_BITMAPBUTTON_DIRECTORY = wxNewId();
 const long sfxGUIDialog::ID_BITMAPBUTTON_EXECUTEFILE = wxNewId();
+const long sfxGUIDialog::ID_STATICTEXT5 = wxNewId();
 const long sfxGUIDialog::ID_STATICTEXT6 = wxNewId();
 const long sfxGUIDialog::ID_TEXTCTRL3 = wxNewId();
 const long sfxGUIDialog::ID_STATICTEXT7 = wxNewId();
@@ -71,10 +72,10 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     //(*Initialize(sfxGUIDialog)
     wxStaticBoxSizer* StaticBoxSizerAdvanced;
     wxFlexGridSizer* FlexGridSizer4;
-    wxBoxSizer* BoxSizerMenu;
     wxFlexGridSizer* FlexGridSizer3;
     wxFlexGridSizer* FlexGridSizer5;
     wxFlexGridSizer* FlexGridSizer2;
+    wxFlexGridSizer* FlexGridSizer7;
     wxFlexGridSizer* FlexGridSizer6;
     wxFlexGridSizer* FlexGridSizer1;
 
@@ -140,7 +141,7 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     PanelAdvanced = new wxPanel(this, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     PanelAdvanced->Hide();
     StaticBoxSizerAdvanced = new wxStaticBoxSizer(wxVERTICAL, PanelAdvanced, _("Advanced SFX Installer Configuration:"));
-    BoxSizerMenu = new wxBoxSizer(wxHORIZONTAL);
+    FlexGridSizer7 = new wxFlexGridSizer(0, 0, 0, 0);
     BitmapButtonMenuTitle = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_TITLE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_TITLE"));
     BitmapButtonMenuTitle->SetDefault();
     BitmapButtonMenuTitle->SetToolTip(_("Insert Title Command"));
@@ -152,7 +153,7 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuTitle->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    BoxSizerMenu->Add(BitmapButtonMenuTitle, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer7->Add(BitmapButtonMenuTitle, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BitmapButtonMenuBeginPrompt = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_BEGINPROMPT, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_BEGINPROMPT"));
     BitmapButtonMenuBeginPrompt->SetDefault();
     BitmapButtonMenuBeginPrompt->SetToolTip(_("Insert BeginPrompt Command"));
@@ -164,7 +165,7 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuBeginPrompt->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    BoxSizerMenu->Add(BitmapButtonMenuBeginPrompt, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer7->Add(BitmapButtonMenuBeginPrompt, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BitmapButtonMenuDirectory = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_DIRECTORY, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_DIRECTORY"));
     BitmapButtonMenuDirectory->SetDefault();
     BitmapButtonMenuDirectory->SetToolTip(_("Insert Directory Command"));
@@ -176,7 +177,7 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuDirectory->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    BoxSizerMenu->Add(BitmapButtonMenuDirectory, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer7->Add(BitmapButtonMenuDirectory, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BitmapButtonMenuExecuteFile = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_EXECUTEFILE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_EXECUTEFILE"));
     BitmapButtonMenuExecuteFile->SetDefault();
     BitmapButtonMenuExecuteFile->SetToolTip(_("Insert ExecuteFile Command"));
@@ -188,8 +189,14 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuExecuteFile->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    BoxSizerMenu->Add(BitmapButtonMenuExecuteFile, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    StaticBoxSizerAdvanced->Add(BoxSizerMenu, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer7->Add(BitmapButtonMenuExecuteFile, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticTextOnlineHelp = new wxStaticText(PanelAdvanced, ID_STATICTEXT5, _("\?"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+    StaticTextOnlineHelp->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT));
+    wxFont StaticTextOnlineHelpFont(wxDEFAULT,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,true,wxEmptyString,wxFONTENCODING_DEFAULT);
+    StaticTextOnlineHelp->SetFont(StaticTextOnlineHelpFont);
+    StaticTextOnlineHelp->SetToolTip(_("http://7zsfx.info/en/parameters.html"));
+    FlexGridSizer7->Add(StaticTextOnlineHelp, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBoxSizerAdvanced->Add(FlexGridSizer7, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer6 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer6->AddGrowableCol(0);
     FlexGridSizer6->AddGrowableRow(1);

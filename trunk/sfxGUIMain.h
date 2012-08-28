@@ -81,6 +81,7 @@ class sfxGUIDialog: public wxDialog
         static const long ID_BITMAPBUTTON_BEGINPROMPT;
         static const long ID_BITMAPBUTTON_DIRECTORY;
         static const long ID_BITMAPBUTTON_EXECUTEFILE;
+        static const long ID_STATICTEXT5;
         static const long ID_STATICTEXT6;
         static const long ID_TEXTCTRL3;
         static const long ID_STATICTEXT7;
@@ -94,6 +95,7 @@ class sfxGUIDialog: public wxDialog
         wxDirDialog* DirDialogSource;
         wxStaticText* StaticTextSource;
         wxStaticText* StaticTextType;
+        wxStaticText* StaticTextOnlineHelp;
         wxButton* ButtonCreate;
         wxChoice* ChoiceCompression;
         wxCheckBox* CheckBoxAdvanced;
