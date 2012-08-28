@@ -1,21 +1,29 @@
 #ifndef SFXGUIMAIN_H
 #define SFXGUIMAIN_H
 
-#define SFX_SOURCE wxInt8
-#define SFX_SOURCE_INVALID (wxInt8)-1
-#define SFX_SOURCE_FILE (wxInt8)0
-#define SFX_SOURCE_DIRECTORY (wxInt8)1
+enum SFX_SOURCE
+{
+    SFX_SOURCE_FILE,
+    SFX_SOURCE_DIRECTORY,
+    SFX_SOURCE_INVALID = -1
+};
 
-#define SFX_TYPE wxInt8
-#define SFX_TYPE_UNKNOWN (wxInt8)-1
-#define SFX_TYPE_ARCHIVE (wxInt8)0
-#define SFX_TYPE_INSTALLER (wxInt8)1
+enum SFX_TYPE
+{
+    SFX_TYPE_ARCHIVE,
+    SFX_TYPE_INSTALLER,
+    SFX_TYPE_UNKNOWN = -1
+};
 
 //(*Headers(sfxGUIDialog)
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/checkbox.h>
+#include <wx/panel.h>
+#include <wx/filedlg.h>
 #include <wx/choice.h>
+#include <wx/bmpbuttn.h>
 #include <wx/button.h>
 #include <wx/dirdlg.h>
 #include <wx/dialog.h>
@@ -23,10 +31,11 @@
 //*)
 #include <wx/dir.h>
 #include <wx/stdpaths.h>
+#include <wx/mstream.h>
 #include <wx/wfstream.h>
 #include <wx/textfile.h>
 
-#include "FileMerge.h"
+#include "resource.h"
 
 class sfxGUIDialog: public wxDialog
 {
@@ -38,24 +47,28 @@ class sfxGUIDialog: public wxDialog
     private:
 
         //(*Handlers(sfxGUIDialog)
-        void OnButtonBrowseClick(wxCommandEvent& event);
+        void OnBitmapButtonSelectDirectoryClick(wxCommandEvent& event);
         void OnChoiceTypeSelect(wxCommandEvent& event);
         void OnButtonCreateClick(wxCommandEvent& event);
         void OnButtonAbortClick(wxCommandEvent& event);
+        void OnBitmapButtonSelectFileClick(wxCommandEvent& event);
+        void OnCheckBoxAdvancedClick(wxCommandEvent& event);
+        void OnBitmapButtonMenuClick(wxCommandEvent& event);
         //*)
 
         public: void SetSource(wxString path);
         private: SFX_SOURCE GetSourceType(wxString path);
         private: SFX_TYPE GetSfxType();
-        private: wxString Create7zCommand(wxString source, wxString target, wxString temp, SFX_SOURCE srcType, SFX_TYPE sfxType, wxInt32 compression);
-        private: void CreateConfigurationFile(wxString path, wxString runFile);
-        private: void MergeFiles(wxString target, wxString sfx, wxString configuration, wxString archive);
+        private: wxString Create7zCommand(wxString source, wxString target, wxInt32 compression, wxString sfx);
+        private: wxString GetSfxConfiguration();
+        private: void CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString sfxConfiguration);
         private: void EnableDisableControls(bool enable);
 
         //(*Identifiers(sfxGUIDialog)
         static const long ID_STATICTEXT1;
         static const long ID_TEXTCTRL1;
-        static const long ID_BUTTON2;
+        static const long ID_BITMAPBUTTON1;
+        static const long ID_BITMAPBUTTON2;
         static const long ID_STATICTEXT4;
         static const long ID_TEXTCTRL2;
         static const long ID_CHOICE2;
@@ -63,23 +76,45 @@ class sfxGUIDialog: public wxDialog
         static const long ID_CHOICE1;
         static const long ID_STATICTEXT3;
         static const long ID_COMBOBOX1;
+        static const long ID_CHECKBOX1;
+        static const long ID_BITMAPBUTTON_TITLE;
+        static const long ID_BITMAPBUTTON_BEGINPROMPT;
+        static const long ID_BITMAPBUTTON_DIRECTORY;
+        static const long ID_BITMAPBUTTON_EXECUTEFILE;
+        static const long ID_STATICTEXT6;
+        static const long ID_TEXTCTRL3;
+        static const long ID_STATICTEXT7;
+        static const long ID_PANEL2;
         static const long ID_BUTTON1;
         //*)
 
         //(*Declarations(sfxGUIDialog)
+        wxBitmapButton* BitmapButtonSelectFile;
         wxTextCtrl* TextCtrlSource;
         wxDirDialog* DirDialogSource;
         wxStaticText* StaticTextSource;
         wxStaticText* StaticTextType;
         wxButton* ButtonCreate;
         wxChoice* ChoiceCompression;
+        wxCheckBox* CheckBoxAdvanced;
         wxComboBox* ComboBoxExecute;
-        wxButton* ButtonBrowse;
+        wxBitmapButton* BitmapButtonSelectDirectory;
+        wxStaticText* StaticTextConfigFooter;
+        wxFileDialog* FileDialogSource;
+        wxStaticText* StaticTextConfigHeader;
         wxStaticText* StaticTextTarget;
         wxStaticText* StaticTextExecute;
         wxChoice* ChoiceType;
+        wxTextCtrl* TextCtrlAdvanced;
+        wxPanel* PanelAdvanced;
+        wxBitmapButton* BitmapButtonMenuDirectory;
+        wxBitmapButton* BitmapButtonMenuBeginPrompt;
         wxTextCtrl* TextCtrlTarget;
+        wxBitmapButton* BitmapButtonMenuTitle;
+        wxBitmapButton* BitmapButtonMenuExecuteFile;
         //*)
+
+        private: wxMemoryInputStream* resourceMemoryStream;
 
         DECLARE_EVENT_TABLE()
 };
