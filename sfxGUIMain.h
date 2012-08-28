@@ -22,6 +22,7 @@ enum SFX_TYPE
 #include <wx/checkbox.h>
 #include <wx/panel.h>
 #include <wx/filedlg.h>
+#include <wx/hyperlink.h>
 #include <wx/choice.h>
 #include <wx/bmpbuttn.h>
 #include <wx/button.h>
@@ -81,7 +82,7 @@ class sfxGUIDialog: public wxDialog
         static const long ID_BITMAPBUTTON_BEGINPROMPT;
         static const long ID_BITMAPBUTTON_DIRECTORY;
         static const long ID_BITMAPBUTTON_EXECUTEFILE;
-        static const long ID_STATICTEXT5;
+        static const long ID_HYPERLINKCTRL1;
         static const long ID_STATICTEXT6;
         static const long ID_TEXTCTRL3;
         static const long ID_STATICTEXT7;
@@ -95,7 +96,7 @@ class sfxGUIDialog: public wxDialog
         wxDirDialog* DirDialogSource;
         wxStaticText* StaticTextSource;
         wxStaticText* StaticTextType;
-        wxStaticText* StaticTextOnlineHelp;
+        wxHyperlinkCtrl* HyperlinkCtrlOnlineHelp;
         wxButton* ButtonCreate;
         wxChoice* ChoiceCompression;
         wxCheckBox* CheckBoxAdvanced;

@@ -225,15 +225,12 @@
 											<option>1</option>
 										</object>
 										<object class="sizeritem">
-											<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticTextOnlineHelp" member="yes">
+											<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrlOnlineHelp" member="yes">
 												<label>?</label>
-												<fg>wxSYS_COLOUR_HOTLIGHT</fg>
-												<font>
-													<underlined>1</underlined>
-												</font>
-												<tooltip>http://7zsfx.info/en/parameters.html</tooltip>
+												<url>http://7zsfx.info/en/parameters.html</url>
+												<tooltip>Open the online documentation for SFX configuration parameters...</tooltip>
 											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxLEFT|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
