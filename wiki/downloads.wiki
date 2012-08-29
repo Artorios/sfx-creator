@@ -1,4 +1,3 @@
-=Downloads=
-||*Date*||*File*||*Size*||
-||2012-08-23||[https://sfx-creator.googlecode.com/files/7z%20SFX%20Creator%20v1.0.zip 7z SFX Creator v1.0.zip]||1.6 MB||
-|| ||[https://code.google.com/p/sfx-creator/downloads/list?tm=2 All Files]|| ||
+|| *Date* || *File* || *Size* ||
+|| 2012-08-23 || [https://sfx-creator.googlecode.com/files/7z%20SFX%20Creator%20v1.0.zip 7z SFX Creator v1.0.zip] || 1.6 MB ||
+||  || [https://code.google.com/p/sfx-creator/downloads/list?tm=2 All Files] ||  ||
