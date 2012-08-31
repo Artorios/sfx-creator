@@ -145,11 +145,11 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuTitle = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_TITLE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_TITLE"));
     BitmapButtonMenuTitle->SetDefault();
     BitmapButtonMenuTitle->SetToolTip(_("Insert Title Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::TITLE_PNG, sizeof RESOURCE::TITLE_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE_PNG, sizeof RESOURCES::TITLE_PNG);
     BitmapButtonMenuTitle->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::TITLE_DISABLED_PNG, sizeof RESOURCE::TITLE_DISABLED_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE_DISABLED_PNG, sizeof RESOURCES::TITLE_DISABLED_PNG);
     BitmapButtonMenuTitle->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
@@ -157,11 +157,11 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuBeginPrompt = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_BEGINPROMPT, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_BEGINPROMPT"));
     BitmapButtonMenuBeginPrompt->SetDefault();
     BitmapButtonMenuBeginPrompt->SetToolTip(_("Insert BeginPrompt Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::REPORT_PNG, sizeof RESOURCE::REPORT_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT_PNG, sizeof RESOURCES::REPORT_PNG);
     BitmapButtonMenuBeginPrompt->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::REPORT_DISABLED_PNG, sizeof RESOURCE::REPORT_DISABLED_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT_DISABLED_PNG, sizeof RESOURCES::REPORT_DISABLED_PNG);
     BitmapButtonMenuBeginPrompt->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
@@ -169,11 +169,11 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuDirectory = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_DIRECTORY, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_DIRECTORY"));
     BitmapButtonMenuDirectory->SetDefault();
     BitmapButtonMenuDirectory->SetToolTip(_("Insert Directory Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::FOLDER_OPEN_PNG, sizeof RESOURCE::FOLDER_OPEN_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER_OPEN_PNG, sizeof RESOURCES::FOLDER_OPEN_PNG);
     BitmapButtonMenuDirectory->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::FOLDER_OPEN_DISABLED_PNG, sizeof RESOURCE::FOLDER_OPEN_DISABLED_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER_OPEN_DISABLED_PNG, sizeof RESOURCES::FOLDER_OPEN_DISABLED_PNG);
     BitmapButtonMenuDirectory->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
@@ -181,11 +181,11 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     BitmapButtonMenuExecuteFile = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_EXECUTEFILE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_EXECUTEFILE"));
     BitmapButtonMenuExecuteFile->SetDefault();
     BitmapButtonMenuExecuteFile->SetToolTip(_("Insert ExecuteFile Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::EXECUTE_FILE_PNG, sizeof RESOURCE::EXECUTE_FILE_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE_FILE_PNG, sizeof RESOURCES::EXECUTE_FILE_PNG);
     BitmapButtonMenuExecuteFile->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCE::EXECUTE_FILE_DISABLED_PNG, sizeof RESOURCE::EXECUTE_FILE_DISABLED_PNG);
+    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE_FILE_DISABLED_PNG, sizeof RESOURCES::EXECUTE_FILE_DISABLED_PNG);
     BitmapButtonMenuExecuteFile->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
     wxDELETE(resourceMemoryStream);
     resourceMemoryStream = NULL;
@@ -444,12 +444,12 @@ void sfxGUIDialog::CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString
 
     if(sfxType == SFX_TYPE_ARCHIVE)
     {
-        outputStream->Write(RESOURCE::_7Z_SFX, sizeof RESOURCE::_7Z_SFX);
+        outputStream->Write(RESOURCES::_7Z_SFX, sizeof RESOURCES::_7Z_SFX);
     }
 
     if(sfxType == SFX_TYPE_INSTALLER)
     {
-        outputStream->Write(RESOURCE::_7ZS_SFX, sizeof RESOURCE::_7ZS_SFX);
+        outputStream->Write(RESOURCES::_7ZS_SFX, sizeof RESOURCES::_7ZS_SFX);
         wxCharBuffer configuration_bytes = sfxConfiguration.ToUTF8();
         outputStream->Write(configuration_bytes, strlen(configuration_bytes.data())); // strlen counts characters until terminating NULL character...
     }
