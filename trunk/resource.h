@@ -11,10 +11,6 @@
 
 struct RESOURCES
 {
-
-/*************************************************
-*   INCLUDE THIS SOURCE FILE INTO YOUR PROJECT   *
-*************************************************/
 	// File: "D:\- MY DATA -\Software-Projects\7z SFX Creator\trunk\res\7z.sfx"
 	public: static const unsigned char _7Z_SFX[162816];
 	public: static const unsigned int  _7Z_SFX_SIZE = 162816;
