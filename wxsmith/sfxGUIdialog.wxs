@@ -177,7 +177,7 @@
 												<default>1</default>
 												<size>24,24</size>
 												<tooltip>Insert Title Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__PNG, sizeof RESOURCES::TITLE__PNG);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__DISABLED__PNG, sizeof RESOURCES::TITLE__DISABLED__PNG);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__PNG.data, RESOURCES::TITLE__PNG.length);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__DISABLED__PNG.data, RESOURCES::TITLE__DISABLED__PNG.length);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
 												<style>0</style>
 												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
 											</object>
@@ -190,7 +190,7 @@
 												<default>1</default>
 												<size>24,24</size>
 												<tooltip>Insert BeginPrompt Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__PNG, sizeof RESOURCES::REPORT__PNG);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__DISABLED__PNG, sizeof RESOURCES::REPORT__DISABLED__PNG);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__PNG.data, RESOURCES::REPORT__PNG.length);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__DISABLED__PNG.data, RESOURCES::REPORT__DISABLED__PNG.length);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
 												<style>0</style>
 												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
 											</object>
@@ -203,7 +203,7 @@
 												<default>1</default>
 												<size>24,24</size>
 												<tooltip>Insert Directory Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__PNG, sizeof RESOURCES::FOLDER__OPEN__PNG);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__DISABLED__PNG, sizeof RESOURCES::FOLDER__OPEN__DISABLED__PNG);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__PNG.data, RESOURCES::FOLDER__OPEN__PNG.length);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__DISABLED__PNG.data, RESOURCES::FOLDER__OPEN__DISABLED__PNG.length);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
 												<style>0</style>
 												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
 											</object>
@@ -216,7 +216,7 @@
 												<default>1</default>
 												<size>24,24</size>
 												<tooltip>Insert ExecuteFile Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__PNG, sizeof RESOURCES::EXECUTE__FILE__PNG);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__DISABLED__PNG, sizeof RESOURCES::EXECUTE__FILE__DISABLED__PNG);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
+												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__PNG.data, RESOURCES::EXECUTE__FILE__PNG.length);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__DISABLED__PNG.data, RESOURCES::EXECUTE__FILE__DISABLED__PNG.length);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
 												<style>0</style>
 												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
 											</object>
