@@ -78,10 +78,6 @@ class sfxGUIDialog: public wxDialog
         static const long ID_STATICTEXT3;
         static const long ID_COMBOBOX1;
         static const long ID_CHECKBOX1;
-        static const long ID_BITMAPBUTTON_TITLE;
-        static const long ID_BITMAPBUTTON_BEGINPROMPT;
-        static const long ID_BITMAPBUTTON_DIRECTORY;
-        static const long ID_BITMAPBUTTON_EXECUTEFILE;
         static const long ID_HYPERLINKCTRL1;
         static const long ID_STATICTEXT6;
         static const long ID_TEXTCTRL3;
@@ -110,11 +106,7 @@ class sfxGUIDialog: public wxDialog
         wxChoice* ChoiceType;
         wxTextCtrl* TextCtrlAdvanced;
         wxPanel* PanelAdvanced;
-        wxBitmapButton* BitmapButtonMenuDirectory;
-        wxBitmapButton* BitmapButtonMenuBeginPrompt;
         wxTextCtrl* TextCtrlTarget;
-        wxBitmapButton* BitmapButtonMenuTitle;
-        wxBitmapButton* BitmapButtonMenuExecuteFile;
         //*)
 
         private: wxMemoryInputStream* resourceMemoryStream;
