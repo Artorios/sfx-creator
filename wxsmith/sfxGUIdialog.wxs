@@ -171,86 +171,27 @@
 								<label>Advanced SFX Installer Configuration:</label>
 								<orient>wxVERTICAL</orient>
 								<object class="sizeritem">
-									<object class="wxFlexGridSizer" variable="FlexGridSizer7" member="no">
-										<object class="sizeritem">
-											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_TITLE" variable="BitmapButtonMenuTitle" member="yes">
-												<default>1</default>
-												<size>24,24</size>
-												<tooltip>Insert Title Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__PNG.data, RESOURCES::TITLE__PNG.length);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE__DISABLED__PNG.data, RESOURCES::TITLE__DISABLED__PNG.length);&#x0A;BitmapButtonMenuTitle-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
-												<style>0</style>
-												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_BEGINPROMPT" variable="BitmapButtonMenuBeginPrompt" member="yes">
-												<default>1</default>
-												<size>24,24</size>
-												<tooltip>Insert BeginPrompt Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__PNG.data, RESOURCES::REPORT__PNG.length);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT__DISABLED__PNG.data, RESOURCES::REPORT__DISABLED__PNG.length);&#x0A;BitmapButtonMenuBeginPrompt-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
-												<style>0</style>
-												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_DIRECTORY" variable="BitmapButtonMenuDirectory" member="yes">
-												<default>1</default>
-												<size>24,24</size>
-												<tooltip>Insert Directory Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__PNG.data, RESOURCES::FOLDER__OPEN__PNG.length);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER__OPEN__DISABLED__PNG.data, RESOURCES::FOLDER__OPEN__DISABLED__PNG.length);&#x0A;BitmapButtonMenuDirectory-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
-												<style>0</style>
-												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxBitmapButton" name="ID_BITMAPBUTTON_EXECUTEFILE" variable="BitmapButtonMenuExecuteFile" member="yes">
-												<default>1</default>
-												<size>24,24</size>
-												<tooltip>Insert ExecuteFile Command</tooltip>
-												<extra_code>resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__PNG.data, RESOURCES::EXECUTE__FILE__PNG.length);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;&#x0A;resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE__FILE__DISABLED__PNG.data, RESOURCES::EXECUTE__FILE__DISABLED__PNG.length);&#x0A;BitmapButtonMenuExecuteFile-&gt;SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP__TYPE__PNG)));&#x0A;wxDELETE(resourceMemoryStream);&#x0A;resourceMemoryStream = NULL;</extra_code>
-												<style>0</style>
-												<handler function="OnBitmapButtonMenuClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrlOnlineHelp" member="yes">
-												<label>?</label>
-												<url>http://7zsfx.info/en/parameters.html</url>
-												<tooltip>Open the online documentation for SFX configuration parameters...</tooltip>
-											</object>
-											<flag>wxLEFT|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-									</object>
-									<flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-									<border>5</border>
-									<option>1</option>
-								</object>
-								<object class="sizeritem">
 									<object class="wxFlexGridSizer" variable="FlexGridSizer6" member="no">
 										<cols>1</cols>
 										<growablecols>0</growablecols>
 										<growablerows>1</growablerows>
+										<object class="sizeritem">
+											<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrlOnlineHelp" member="yes">
+												<label>[?]</label>
+												<url>http://7zsfx.info/en/parameters.html</url>
+												<tooltip>Open the online documentation for SFX configuration parameters...</tooltip>
+											</object>
+											<flag>wxLEFT|wxRIGHT|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
 										<object class="sizeritem">
 											<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextConfigHeader" member="yes">
 												<label>;!@Install@!UTF-8!</label>
 												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
 												<style>wxNO_BORDER</style>
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
@@ -270,7 +211,7 @@
 												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
 												<style>wxNO_BORDER</style>
 											</object>
-											<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>

@@ -50,10 +50,6 @@ const long sfxGUIDialog::ID_CHOICE1 = wxNewId();
 const long sfxGUIDialog::ID_STATICTEXT3 = wxNewId();
 const long sfxGUIDialog::ID_COMBOBOX1 = wxNewId();
 const long sfxGUIDialog::ID_CHECKBOX1 = wxNewId();
-const long sfxGUIDialog::ID_BITMAPBUTTON_TITLE = wxNewId();
-const long sfxGUIDialog::ID_BITMAPBUTTON_BEGINPROMPT = wxNewId();
-const long sfxGUIDialog::ID_BITMAPBUTTON_DIRECTORY = wxNewId();
-const long sfxGUIDialog::ID_BITMAPBUTTON_EXECUTEFILE = wxNewId();
 const long sfxGUIDialog::ID_HYPERLINKCTRL1 = wxNewId();
 const long sfxGUIDialog::ID_STATICTEXT6 = wxNewId();
 const long sfxGUIDialog::ID_TEXTCTRL3 = wxNewId();
@@ -75,7 +71,6 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     wxFlexGridSizer* FlexGridSizer3;
     wxFlexGridSizer* FlexGridSizer5;
     wxFlexGridSizer* FlexGridSizer2;
-    wxFlexGridSizer* FlexGridSizer7;
     wxFlexGridSizer* FlexGridSizer6;
     wxFlexGridSizer* FlexGridSizer1;
 
@@ -141,70 +136,20 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     PanelAdvanced = new wxPanel(this, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     PanelAdvanced->Hide();
     StaticBoxSizerAdvanced = new wxStaticBoxSizer(wxVERTICAL, PanelAdvanced, _("Advanced SFX Installer Configuration:"));
-    FlexGridSizer7 = new wxFlexGridSizer(0, 0, 0, 0);
-    BitmapButtonMenuTitle = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_TITLE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_TITLE"));
-    BitmapButtonMenuTitle->SetDefault();
-    BitmapButtonMenuTitle->SetToolTip(_("Insert Title Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE_PNG.data, RESOURCES::TITLE_PNG.length);
-    BitmapButtonMenuTitle->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::TITLE_DISABLED_PNG.data, RESOURCES::TITLE_DISABLED_PNG.length);
-    BitmapButtonMenuTitle->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    FlexGridSizer7->Add(BitmapButtonMenuTitle, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BitmapButtonMenuBeginPrompt = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_BEGINPROMPT, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_BEGINPROMPT"));
-    BitmapButtonMenuBeginPrompt->SetDefault();
-    BitmapButtonMenuBeginPrompt->SetToolTip(_("Insert BeginPrompt Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT_PNG.data, RESOURCES::REPORT_PNG.length);
-    BitmapButtonMenuBeginPrompt->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::REPORT_DISABLED_PNG.data, RESOURCES::REPORT_DISABLED_PNG.length);
-    BitmapButtonMenuBeginPrompt->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    FlexGridSizer7->Add(BitmapButtonMenuBeginPrompt, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BitmapButtonMenuDirectory = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_DIRECTORY, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_DIRECTORY"));
-    BitmapButtonMenuDirectory->SetDefault();
-    BitmapButtonMenuDirectory->SetToolTip(_("Insert Directory Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER_OPEN_PNG.data, RESOURCES::FOLDER_OPEN_PNG.length);
-    BitmapButtonMenuDirectory->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::FOLDER_OPEN_DISABLED_PNG.data, RESOURCES::FOLDER_OPEN_DISABLED_PNG.length);
-    BitmapButtonMenuDirectory->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    FlexGridSizer7->Add(BitmapButtonMenuDirectory, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    BitmapButtonMenuExecuteFile = new wxBitmapButton(PanelAdvanced, ID_BITMAPBUTTON_EXECUTEFILE, wxNullBitmap, wxDefaultPosition, wxSize(24,24), 0, wxDefaultValidator, _T("ID_BITMAPBUTTON_EXECUTEFILE"));
-    BitmapButtonMenuExecuteFile->SetDefault();
-    BitmapButtonMenuExecuteFile->SetToolTip(_("Insert ExecuteFile Command"));
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE_FILE_PNG.data, RESOURCES::EXECUTE_FILE_PNG.length);
-    BitmapButtonMenuExecuteFile->SetBitmapLabel(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    resourceMemoryStream = new wxMemoryInputStream(RESOURCES::EXECUTE_FILE_DISABLED_PNG.data, RESOURCES::EXECUTE_FILE_DISABLED_PNG.length);
-    BitmapButtonMenuExecuteFile->SetBitmapDisabled(wxBitmap(wxImage(*resourceMemoryStream, wxBITMAP_TYPE_PNG)));
-    wxDELETE(resourceMemoryStream);
-    resourceMemoryStream = NULL;
-    FlexGridSizer7->Add(BitmapButtonMenuExecuteFile, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    HyperlinkCtrlOnlineHelp = new wxHyperlinkCtrl(PanelAdvanced, ID_HYPERLINKCTRL1, _("\?"), _("http://7zsfx.info/en/parameters.html"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
-    HyperlinkCtrlOnlineHelp->SetToolTip(_("Open the online documentation for SFX configuration parameters..."));
-    FlexGridSizer7->Add(HyperlinkCtrlOnlineHelp, 1, wxLEFT|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    StaticBoxSizerAdvanced->Add(FlexGridSizer7, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer6 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer6->AddGrowableCol(0);
     FlexGridSizer6->AddGrowableRow(1);
+    HyperlinkCtrlOnlineHelp = new wxHyperlinkCtrl(PanelAdvanced, ID_HYPERLINKCTRL1, _("[\?]"), _("http://7zsfx.info/en/parameters.html"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
+    HyperlinkCtrlOnlineHelp->SetToolTip(_("Open the online documentation for SFX configuration parameters..."));
+    FlexGridSizer6->Add(HyperlinkCtrlOnlineHelp, 1, wxLEFT|wxRIGHT|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextConfigHeader = new wxStaticText(PanelAdvanced, ID_STATICTEXT6, _(";!@Install@!UTF-8!"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER, _T("ID_STATICTEXT6"));
     StaticTextConfigHeader->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
-    FlexGridSizer6->Add(StaticTextConfigHeader, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer6->Add(StaticTextConfigHeader, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     TextCtrlAdvanced = new wxTextCtrl(PanelAdvanced, ID_TEXTCTRL3, _("ExecuteFile=\"\""), wxDefaultPosition, wxSize(0,100), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     FlexGridSizer6->Add(TextCtrlAdvanced, 1, wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextConfigFooter = new wxStaticText(PanelAdvanced, ID_STATICTEXT7, _(";!@InstallEnd@!"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER, _T("ID_STATICTEXT7"));
     StaticTextConfigFooter->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
-    FlexGridSizer6->Add(StaticTextConfigFooter, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer6->Add(StaticTextConfigFooter, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizerAdvanced->Add(FlexGridSizer6, 0, wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 0);
     PanelAdvanced->SetSizer(StaticBoxSizerAdvanced);
     StaticBoxSizerAdvanced->Fit(PanelAdvanced);
@@ -227,10 +172,6 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     Connect(ID_BITMAPBUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonSelectDirectoryClick);
     Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&sfxGUIDialog::OnChoiceTypeSelect);
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnCheckBoxAdvancedClick);
-    Connect(ID_BITMAPBUTTON_TITLE,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonMenuClick);
-    Connect(ID_BITMAPBUTTON_BEGINPROMPT,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonMenuClick);
-    Connect(ID_BITMAPBUTTON_DIRECTORY,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonMenuClick);
-    Connect(ID_BITMAPBUTTON_EXECUTEFILE,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonMenuClick);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnButtonCreateClick);
     //*)
 }
@@ -338,7 +279,6 @@ void sfxGUIDialog::OnChoiceTypeSelect(wxCommandEvent& event)
         }
         CheckBoxAdvanced->Enable(true);
         PanelAdvanced->Enable(true);
-        BitmapButtonMenuExecuteFile->Enable(true);
     }
     else
     {
@@ -346,7 +286,6 @@ void sfxGUIDialog::OnChoiceTypeSelect(wxCommandEvent& event)
         ComboBoxExecute->Enable(false);
         CheckBoxAdvanced->Enable(false);
         PanelAdvanced->Enable(false);
-        BitmapButtonMenuExecuteFile->Enable(false);
     }
 }
 
@@ -386,6 +325,7 @@ SFX_TYPE sfxGUIDialog::GetSfxType()
 
 void sfxGUIDialog::OnBitmapButtonMenuClick(wxCommandEvent& event)
 {
+    /*
     wxString content = TextCtrlAdvanced->GetValue();
 
     if(!content.IsEmpty() && !content.EndsWith(wxT("\n")))
@@ -409,6 +349,7 @@ void sfxGUIDialog::OnBitmapButtonMenuClick(wxCommandEvent& event)
     {
         TextCtrlAdvanced->SetValue(content + wxT("Title=\"Title\""));
     }
+    */
 }
 
 wxString sfxGUIDialog::GetSfxConfiguration()
