@@ -67,41 +67,32 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(sfxGUIDialog)
     wxStaticBoxSizer* StaticBoxSizerAdvanced;
-    wxFlexGridSizer* FlexGridSizer4;
-    wxFlexGridSizer* FlexGridSizer3;
-    wxFlexGridSizer* FlexGridSizer5;
-    wxFlexGridSizer* FlexGridSizer2;
     wxFlexGridSizer* FlexGridSizer6;
-    wxFlexGridSizer* FlexGridSizer1;
 
     Create(parent, wxID_ANY, _("7z SFX Creator"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX, _T("wxID_ANY"));
-    FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
-    FlexGridSizer1->AddGrowableCol(1);
-    FlexGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
-    FlexGridSizer2->AddGrowableCol(1);
+    GridBagSizerWindow = new wxGridBagSizer(0, 0);
+    GridBagSizerWindow->AddGrowableCol(1);
+    GridBagSizerWindow->AddGrowableCol(3);
+    GridBagSizerWindow->AddGrowableRow(3);
     StaticTextSource = new wxStaticText(this, ID_STATICTEXT1, _("Source:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    FlexGridSizer2->Add(StaticTextSource, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer3 = new wxFlexGridSizer(0, 3, 0, 0);
-    FlexGridSizer3->AddGrowableCol(0);
+    GridBagSizerWindow->Add(StaticTextSource, wxGBPosition(0, 0), wxDefaultSpan, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     TextCtrlSource = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    TextCtrlSource->SetMinSize(wxSize(400,-1));
+    TextCtrlSource->SetMinSize(wxSize(488,-1));
     TextCtrlSource->Disable();
-    FlexGridSizer3->Add(TextCtrlSource, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(TextCtrlSource, wxGBPosition(0, 1), wxGBSpan(1, 4), wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BitmapButtonSelectFile = new wxBitmapButton(this, ID_BITMAPBUTTON1, wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_NEW")),wxART_BUTTON), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON1"));
     BitmapButtonSelectFile->SetDefault();
     BitmapButtonSelectFile->SetToolTip(_("Select Source File..."));
-    FlexGridSizer3->Add(BitmapButtonSelectFile, 1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(BitmapButtonSelectFile, wxGBPosition(0, 5), wxDefaultSpan, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BitmapButtonSelectDirectory = new wxBitmapButton(this, ID_BITMAPBUTTON2, wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_OPEN")),wxART_BUTTON), wxDefaultPosition, wxSize(24,24), wxBU_AUTODRAW, wxDefaultValidator, _T("ID_BITMAPBUTTON2"));
     BitmapButtonSelectDirectory->SetDefault();
     BitmapButtonSelectDirectory->SetToolTip(_("Select Source Directory..."));
-    FlexGridSizer3->Add(BitmapButtonSelectDirectory, 1, wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer2->Add(FlexGridSizer3, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(BitmapButtonSelectDirectory, wxGBPosition(0, 6), wxDefaultSpan, wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextTarget = new wxStaticText(this, ID_STATICTEXT4, _("Target:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    FlexGridSizer2->Add(StaticTextTarget, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer4 = new wxFlexGridSizer(0, 2, 0, 0);
-    FlexGridSizer4->AddGrowableCol(0);
+    GridBagSizerWindow->Add(StaticTextTarget, wxGBPosition(1, 0), wxDefaultSpan, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     TextCtrlTarget = new wxTextCtrl(this, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    FlexGridSizer4->Add(TextCtrlTarget, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    TextCtrlTarget->SetMinSize(wxSize(440,-1));
+    GridBagSizerWindow->Add(TextCtrlTarget, wxGBPosition(1, 1), wxGBSpan(1, 3), wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     ChoiceCompression = new wxChoice(this, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
     ChoiceCompression->Append(_("Store"));
     ChoiceCompression->Append(_("Fastest"));
@@ -110,62 +101,58 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     ChoiceCompression->Append(_("Maximum"));
     ChoiceCompression->Append(_("Ultra"));
     ChoiceCompression->SetToolTip(_("Compression Method"));
-    FlexGridSizer4->Add(ChoiceCompression, 1, wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer2->Add(FlexGridSizer4, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(ChoiceCompression, wxGBPosition(1, 4), wxGBSpan(1, 3), wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextType = new wxStaticText(this, ID_STATICTEXT2, _("Type:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    FlexGridSizer2->Add(StaticTextType, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer5 = new wxFlexGridSizer(0, 4, 0, 0);
-    FlexGridSizer5->AddGrowableCol(0);
-    FlexGridSizer5->AddGrowableCol(2);
+    GridBagSizerWindow->Add(StaticTextType, wxGBPosition(2, 0), wxDefaultSpan, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     ChoiceType = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     ChoiceType->SetSelection( ChoiceType->Append(_("Self Extracting Installer")) );
     ChoiceType->Append(_("Self Extracting Archive"));
+    ChoiceType->SetMinSize(wxSize(180,-1));
     ChoiceType->SetHelpText(_("SFX Archive:\n + extract files to a directory choosen by the user\n + usage: distribute compressed data files\n\nSFX Installer:\n + extract files to a temporary directory\n + execute a specific file after extraction\n + delete temporary files after completion\n + usage: distribute compressed applications"));
-    FlexGridSizer5->Add(ChoiceType, 1, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(ChoiceType, wxGBPosition(2, 1), wxDefaultSpan, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextExecute = new wxStaticText(this, ID_STATICTEXT3, _("Execute File:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT3"));
-    FlexGridSizer5->Add(StaticTextExecute, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(StaticTextExecute, wxGBPosition(2, 2), wxDefaultSpan, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     ComboBoxExecute = new wxComboBox(this, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
+    ComboBoxExecute->SetMinSize(wxSize(180,-1));
     ComboBoxExecute->SetHelpText(_("Select a file that will be executed (Installer only)\n+ system files (i.e. notepad.exe) can be used\n+ commandline parameters can be appended after file name\n"));
-    FlexGridSizer5->Add(ComboBoxExecute, 1, wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    CheckBoxAdvanced = new wxCheckBox(this, ID_CHECKBOX1, _("Advanced"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    GridBagSizerWindow->Add(ComboBoxExecute, wxGBPosition(2, 3), wxDefaultSpan, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    CheckBoxAdvanced = new wxCheckBox(this, ID_CHECKBOX1, _("Advanced Conf"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     CheckBoxAdvanced->SetValue(false);
     CheckBoxAdvanced->SetToolTip(_("Enable Advanced Mode"));
-    FlexGridSizer5->Add(CheckBoxAdvanced, 1, wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer2->Add(FlexGridSizer5, 1, wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer2->Add(-1,-1,1, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(CheckBoxAdvanced, wxGBPosition(2, 4), wxGBSpan(1, 3), wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
     PanelAdvanced = new wxPanel(this, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     PanelAdvanced->Hide();
     StaticBoxSizerAdvanced = new wxStaticBoxSizer(wxVERTICAL, PanelAdvanced, _("Advanced SFX Installer Configuration:"));
     FlexGridSizer6 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer6->AddGrowableCol(0);
-    FlexGridSizer6->AddGrowableRow(1);
+    FlexGridSizer6->AddGrowableRow(2);
     HyperlinkCtrlOnlineHelp = new wxHyperlinkCtrl(PanelAdvanced, ID_HYPERLINKCTRL1, _("[\?]"), _("http://7zsfx.info/en/parameters.html"), wxDefaultPosition, wxDefaultSize, wxHL_CONTEXTMENU|wxHL_ALIGN_CENTRE|wxNO_BORDER, _T("ID_HYPERLINKCTRL1"));
     HyperlinkCtrlOnlineHelp->SetToolTip(_("Open the online documentation for SFX configuration parameters..."));
     FlexGridSizer6->Add(HyperlinkCtrlOnlineHelp, 1, wxLEFT|wxRIGHT|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextConfigHeader = new wxStaticText(PanelAdvanced, ID_STATICTEXT6, _(";!@Install@!UTF-8!"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER, _T("ID_STATICTEXT6"));
     StaticTextConfigHeader->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
     FlexGridSizer6->Add(StaticTextConfigHeader, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    TextCtrlAdvanced = new wxTextCtrl(PanelAdvanced, ID_TEXTCTRL3, _("ExecuteFile=\"\""), wxDefaultPosition, wxSize(0,100), wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrlAdvanced = new wxTextCtrl(PanelAdvanced, ID_TEXTCTRL3, _("ExecuteFile=\"\""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrlAdvanced->SetMinSize(wxSize(-1,100));
     FlexGridSizer6->Add(TextCtrlAdvanced, 1, wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticTextConfigFooter = new wxStaticText(PanelAdvanced, ID_STATICTEXT7, _(";!@InstallEnd@!"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER, _T("ID_STATICTEXT7"));
     StaticTextConfigFooter->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
     FlexGridSizer6->Add(StaticTextConfigFooter, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    StaticBoxSizerAdvanced->Add(FlexGridSizer6, 0, wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP, 0);
+    StaticBoxSizerAdvanced->Add(FlexGridSizer6, 0, wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     PanelAdvanced->SetSizer(StaticBoxSizerAdvanced);
     StaticBoxSizerAdvanced->Fit(PanelAdvanced);
     StaticBoxSizerAdvanced->SetSizeHints(PanelAdvanced);
-    FlexGridSizer2->Add(PanelAdvanced, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridBagSizerWindow->Add(PanelAdvanced, wxGBPosition(3, 0), wxGBSpan(1, 7), wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     ButtonCreate = new wxButton(this, ID_BUTTON1, _("Create SFX"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     ButtonCreate->SetFocus();
     wxFont ButtonCreateFont(wxDEFAULT,wxDEFAULT,wxFONTSTYLE_NORMAL,wxBOLD,false,wxEmptyString,wxFONTENCODING_DEFAULT);
     ButtonCreate->SetFont(ButtonCreateFont);
-    FlexGridSizer1->Add(ButtonCreate, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    SetSizer(FlexGridSizer1);
+    GridBagSizerWindow->Add(ButtonCreate, wxGBPosition(4, 0), wxGBSpan(1, 7), wxBOTTOM|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL, 5);
+    SetSizer(GridBagSizerWindow);
     DirDialogSource = new wxDirDialog(this, _("Select directory"), wxEmptyString, wxDD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     FileDialogSource = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, wxFileSelectorDefaultWildcardStr, wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    FlexGridSizer1->Fit(this);
-    FlexGridSizer1->SetSizeHints(this);
+    GridBagSizerWindow->Fit(this);
+    GridBagSizerWindow->SetSizeHints(this);
     Center();
 
     Connect(ID_BITMAPBUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnBitmapButtonSelectFileClick);
@@ -300,11 +287,12 @@ void sfxGUIDialog::OnCheckBoxAdvancedClick(wxCommandEvent& event)
         PanelAdvanced->Hide();
     }
 
+	// re-allocate the window's size hints after set showing a hidden control
+	// in order to prevent the window from being sized smaller than the minimal size required by the sizer
+	GridBagSizerWindow->SetSizeHints(this); // call fit automatically
+
     wxCommandEvent ce;
     OnChoiceTypeSelect(ce);
-
-    Fit();
-    //Center();
 }
 
 SFX_TYPE sfxGUIDialog::GetSfxType()
@@ -321,35 +309,6 @@ SFX_TYPE sfxGUIDialog::GetSfxType()
         }
     }
     return SFX_TYPE_UNKNOWN;
-}
-
-void sfxGUIDialog::OnBitmapButtonMenuClick(wxCommandEvent& event)
-{
-    /*
-    wxString content = TextCtrlAdvanced->GetValue();
-
-    if(!content.IsEmpty() && !content.EndsWith(wxT("\n")))
-    {
-        content += wxT("\n");
-    }
-
-    if(event.GetId() == ID_BITMAPBUTTON_DIRECTORY)
-    {
-        TextCtrlAdvanced->SetValue(content + wxT("Directory=\"%%T\""));
-    }
-    if(event.GetId() == ID_BITMAPBUTTON_BEGINPROMPT)
-    {
-        TextCtrlAdvanced->SetValue(content + wxT("BeginPrompt=\"Text\""));
-    }
-    if(event.GetId() == ID_BITMAPBUTTON_EXECUTEFILE)
-    {
-        TextCtrlAdvanced->SetValue(content + wxT("ExecuteFile=\"File\""));
-    }
-    if(event.GetId() == ID_BITMAPBUTTON_TITLE)
-    {
-        TextCtrlAdvanced->SetValue(content + wxT("Title=\"Title\""));
-    }
-    */
 }
 
 wxString sfxGUIDialog::GetSfxConfiguration()

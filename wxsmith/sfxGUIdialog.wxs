@@ -5,227 +5,221 @@
 		<centered>1</centered>
 		<id_arg>0</id_arg>
 		<style>wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX</style>
-		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
-			<cols>1</cols>
-			<growablecols>1</growablecols>
+		<object class="wxGridBagSizer" variable="GridBagSizerWindow" member="yes">
+			<growablecols>1,3</growablecols>
+			<growablerows>3</growablerows>
 			<object class="sizeritem">
-				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
-					<cols>2</cols>
-					<growablecols>1</growablecols>
-					<object class="sizeritem">
-						<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticTextSource" member="yes">
-							<label>Source:</label>
-						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
-							<cols>3</cols>
-							<growablecols>0</growablecols>
-							<object class="sizeritem">
-								<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrlSource" member="yes">
-									<enabled>0</enabled>
-									<minsize>400,-1</minsize>
-								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButtonSelectFile" member="yes">
-									<bitmap stock_id="wxART_NEW" />
-									<default>1</default>
-									<size>24,24</size>
-									<tooltip>Select Source File...</tooltip>
-									<handler function="OnBitmapButtonSelectFileClick" entry="EVT_BUTTON" />
-								</object>
-								<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButtonSelectDirectory" member="yes">
-									<bitmap stock_id="wxART_FILE_OPEN" />
-									<default>1</default>
-									<size>24,24</size>
-									<tooltip>Select Source Directory...</tooltip>
-									<handler function="OnBitmapButtonSelectDirectoryClick" entry="EVT_BUTTON" />
-								</object>
-								<flag>wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-						</object>
-						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticTextTarget" member="yes">
-							<label>Target:</label>
-						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxFlexGridSizer" variable="FlexGridSizer4" member="no">
-							<cols>2</cols>
-							<growablecols>0</growablecols>
-							<object class="sizeritem">
-								<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrlTarget" member="yes" />
-								<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxChoice" name="ID_CHOICE2" variable="ChoiceCompression" member="yes">
-									<content>
-										<item>Store</item>
-										<item>Fastest</item>
-										<item>Fast</item>
-										<item>Normal</item>
-										<item>Maximum</item>
-										<item>Ultra</item>
-									</content>
-									<selection>3</selection>
-									<tooltip>Compression Method</tooltip>
-								</object>
-								<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-						</object>
-						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticTextType" member="yes">
-							<label>Type:</label>
-						</object>
-						<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxFlexGridSizer" variable="FlexGridSizer5" member="no">
-							<cols>4</cols>
-							<growablecols>0,2</growablecols>
-							<object class="sizeritem">
-								<object class="wxChoice" name="ID_CHOICE1" variable="ChoiceType" member="yes">
-									<content>
-										<item>Self Extracting Installer</item>
-										<item>Self Extracting Archive</item>
-									</content>
-									<selection>0</selection>
-									<help>SFX Archive:&#x0A; + extract files to a directory choosen by the user&#x0A; + usage: distribute compressed data files&#x0A;&#x0A;SFX Installer:&#x0A; + extract files to a temporary directory&#x0A; + execute a specific file after extraction&#x0A; + delete temporary files after completion&#x0A; + usage: distribute compressed applications</help>
-									<handler function="OnChoiceTypeSelect" entry="EVT_CHOICE" />
-								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticTextExecute" member="yes">
-									<label>Execute File:</label>
-								</object>
-								<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes">
-									<help>Select a file that will be executed (Installer only)&#x0A;+ system files (i.e. notepad.exe) can be used&#x0A;+ commandline parameters can be appended after file name&#x0A;</help>
-								</object>
-								<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBoxAdvanced" member="yes">
-									<label>Advanced</label>
-									<tooltip>Enable Advanced Mode</tooltip>
-									<handler function="OnCheckBoxAdvancedClick" entry="EVT_CHECKBOX" />
-								</object>
-								<flag>wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-						</object>
-						<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="spacer">
-						<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxPanel" name="ID_PANEL2" variable="PanelAdvanced" member="yes">
-							<hidden>1</hidden>
-							<object class="wxStaticBoxSizer" variable="StaticBoxSizerAdvanced" member="no">
-								<label>Advanced SFX Installer Configuration:</label>
-								<orient>wxVERTICAL</orient>
+				<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticTextSource" member="yes">
+					<label>Source:</label>
+				</object>
+				<col>0</col>
+				<row>0</row>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrlSource" member="yes">
+					<enabled>0</enabled>
+					<minsize>488,-1</minsize>
+				</object>
+				<colspan>4</colspan>
+				<col>1</col>
+				<row>0</row>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBitmapButton" name="ID_BITMAPBUTTON1" variable="BitmapButtonSelectFile" member="yes">
+					<bitmap stock_id="wxART_NEW" />
+					<default>1</default>
+					<size>24,24</size>
+					<tooltip>Select Source File...</tooltip>
+					<handler function="OnBitmapButtonSelectFileClick" entry="EVT_BUTTON" />
+				</object>
+				<col>5</col>
+				<row>0</row>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBitmapButton" name="ID_BITMAPBUTTON2" variable="BitmapButtonSelectDirectory" member="yes">
+					<bitmap stock_id="wxART_FILE_OPEN" />
+					<default>1</default>
+					<size>24,24</size>
+					<tooltip>Select Source Directory...</tooltip>
+					<handler function="OnBitmapButtonSelectDirectoryClick" entry="EVT_BUTTON" />
+				</object>
+				<col>6</col>
+				<row>0</row>
+				<flag>wxRIGHT|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticTextTarget" member="yes">
+					<label>Target:</label>
+				</object>
+				<col>0</col>
+				<row>1</row>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrlTarget" member="yes">
+					<minsize>440,-1</minsize>
+				</object>
+				<colspan>3</colspan>
+				<col>1</col>
+				<row>1</row>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxChoice" name="ID_CHOICE2" variable="ChoiceCompression" member="yes">
+					<content>
+						<item>Store</item>
+						<item>Fastest</item>
+						<item>Fast</item>
+						<item>Normal</item>
+						<item>Maximum</item>
+						<item>Ultra</item>
+					</content>
+					<selection>3</selection>
+					<tooltip>Compression Method</tooltip>
+				</object>
+				<colspan>3</colspan>
+				<col>4</col>
+				<row>1</row>
+				<flag>wxTOP|wxBOTTOM|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticTextType" member="yes">
+					<label>Type:</label>
+				</object>
+				<col>0</col>
+				<row>2</row>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxChoice" name="ID_CHOICE1" variable="ChoiceType" member="yes">
+					<content>
+						<item>Self Extracting Installer</item>
+						<item>Self Extracting Archive</item>
+					</content>
+					<selection>0</selection>
+					<help>SFX Archive:&#x0A; + extract files to a directory choosen by the user&#x0A; + usage: distribute compressed data files&#x0A;&#x0A;SFX Installer:&#x0A; + extract files to a temporary directory&#x0A; + execute a specific file after extraction&#x0A; + delete temporary files after completion&#x0A; + usage: distribute compressed applications</help>
+					<minsize>180,-1</minsize>
+					<handler function="OnChoiceTypeSelect" entry="EVT_CHOICE" />
+				</object>
+				<col>1</col>
+				<row>2</row>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticTextExecute" member="yes">
+					<label>Execute File:</label>
+				</object>
+				<col>2</col>
+				<row>2</row>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBoxExecute" member="yes">
+					<help>Select a file that will be executed (Installer only)&#x0A;+ system files (i.e. notepad.exe) can be used&#x0A;+ commandline parameters can be appended after file name&#x0A;</help>
+					<minsize>180,-1</minsize>
+				</object>
+				<col>3</col>
+				<row>2</row>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBoxAdvanced" member="yes">
+					<label>Advanced Conf</label>
+					<tooltip>Enable Advanced Mode</tooltip>
+					<handler function="OnCheckBoxAdvancedClick" entry="EVT_CHECKBOX" />
+				</object>
+				<colspan>3</colspan>
+				<col>4</col>
+				<row>2</row>
+				<flag>wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxPanel" name="ID_PANEL2" variable="PanelAdvanced" member="yes">
+					<hidden>1</hidden>
+					<object class="wxStaticBoxSizer" variable="StaticBoxSizerAdvanced" member="no">
+						<label>Advanced SFX Installer Configuration:</label>
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="FlexGridSizer6" member="no">
+								<cols>1</cols>
+								<growablecols>0</growablecols>
+								<growablerows>2</growablerows>
 								<object class="sizeritem">
-									<object class="wxFlexGridSizer" variable="FlexGridSizer6" member="no">
-										<cols>1</cols>
-										<growablecols>0</growablecols>
-										<growablerows>1</growablerows>
-										<object class="sizeritem">
-											<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrlOnlineHelp" member="yes">
-												<label>[?]</label>
-												<url>http://7zsfx.info/en/parameters.html</url>
-												<tooltip>Open the online documentation for SFX configuration parameters...</tooltip>
-											</object>
-											<flag>wxLEFT|wxRIGHT|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextConfigHeader" member="yes">
-												<label>;!@Install@!UTF-8!</label>
-												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
-												<style>wxNO_BORDER</style>
-											</object>
-											<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrlAdvanced" member="yes">
-												<value>ExecuteFile=&quot;&quot;</value>
-												<size>0,100</size>
-												<style>wxTE_MULTILINE</style>
-											</object>
-											<flag>wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticTextConfigFooter" member="yes">
-												<label>;!@InstallEnd@!</label>
-												<fg>wxSYS_COLOUR_GRAYTEXT</fg>
-												<style>wxNO_BORDER</style>
-											</object>
-											<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
+									<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrlOnlineHelp" member="yes">
+										<label>[?]</label>
+										<url>http://7zsfx.info/en/parameters.html</url>
+										<tooltip>Open the online documentation for SFX configuration parameters...</tooltip>
 									</object>
-									<flag>wxEXPAND|wxALIGN_LEFT|wxALIGN_TOP</flag>
+									<flag>wxLEFT|wxRIGHT|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextConfigHeader" member="yes">
+										<label>;!@Install@!UTF-8!</label>
+										<fg>wxSYS_COLOUR_GRAYTEXT</fg>
+										<style>wxNO_BORDER</style>
+									</object>
+									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrlAdvanced" member="yes">
+										<value>ExecuteFile=&quot;&quot;</value>
+										<minsize>-1,100</minsize>
+										<style>wxTE_MULTILINE</style>
+									</object>
+									<flag>wxLEFT|wxRIGHT|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticTextConfigFooter" member="yes">
+										<label>;!@InstallEnd@!</label>
+										<fg>wxSYS_COLOUR_GRAYTEXT</fg>
+										<style>wxNO_BORDER</style>
+									</object>
+									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
 								</object>
 							</object>
+							<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						</object>
-						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<colspan>7</colspan>
+				<col>0</col>
+				<row>3</row>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
@@ -238,7 +232,10 @@
 					</font>
 					<handler function="OnButtonCreateClick" entry="EVT_BUTTON" />
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<colspan>7</colspan>
+				<col>0</col>
+				<row>4</row>
+				<flag>wxBOTTOM|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>

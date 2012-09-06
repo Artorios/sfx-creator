@@ -25,6 +25,7 @@ enum SFX_TYPE
 #include <wx/hyperlink.h>
 #include <wx/choice.h>
 #include <wx/bmpbuttn.h>
+#include <wx/gbsizer.h>
 #include <wx/button.h>
 #include <wx/dirdlg.h>
 #include <wx/dialog.h>
@@ -54,7 +55,6 @@ class sfxGUIDialog: public wxDialog
         void OnButtonAbortClick(wxCommandEvent& event);
         void OnBitmapButtonSelectFileClick(wxCommandEvent& event);
         void OnCheckBoxAdvancedClick(wxCommandEvent& event);
-        void OnBitmapButtonMenuClick(wxCommandEvent& event);
         //*)
 
         public: void SetSource(wxString path);
@@ -105,6 +105,7 @@ class sfxGUIDialog: public wxDialog
         wxStaticText* StaticTextExecute;
         wxChoice* ChoiceType;
         wxTextCtrl* TextCtrlAdvanced;
+        wxGridBagSizer* GridBagSizerWindow;
         wxPanel* PanelAdvanced;
         wxTextCtrl* TextCtrlTarget;
         //*)

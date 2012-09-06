@@ -15,12 +15,13 @@ bool sfxGUIApp::OnInit()
     if ( wxsOK )
     {
     	sfxGUIDialog Dlg(0);
-        if(argc==2)
+		if(argc==2)
         {
             Dlg.SetSource(wxString(argv[1], wxConvUTF8)); // Convert second parameter argv[1] from char* to wxString
         }
     	SetTopWindow(&Dlg);
     	Dlg.ShowModal();
+
     	wxsOK = false;
     }
     //*)
