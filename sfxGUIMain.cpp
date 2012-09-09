@@ -161,6 +161,18 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnCheckBoxAdvancedClick);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&sfxGUIDialog::OnButtonCreateClick);
     //*)
+
+	// XOR decoding 7z.sfx
+	for(wxUint32 i=0; i<RESOURCES::_7Z_SFX.length; i++)
+	{
+		RESOURCES::_7Z_SFX.data[i] ^= 'U';
+	}
+
+	// XOR decoding 7zS.sfx
+	for(wxUint32 j=0; j<RESOURCES::_7ZS_SFX.length; j++)
+	{
+		RESOURCES::_7ZS_SFX.data[j] ^= 'U';
+	}
 }
 
 sfxGUIDialog::~sfxGUIDialog()
@@ -345,13 +357,15 @@ void sfxGUIDialog::CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString
     if(sfxType == SFX_TYPE_ARCHIVE)
     {
         outputStream->Write(RESOURCES::_7Z_SFX.data, RESOURCES::_7Z_SFX.length);
+//wxMessageBox(wxT("break to get the xor'ed sfx file..."));
     }
 
     if(sfxType == SFX_TYPE_INSTALLER)
     {
         outputStream->Write(RESOURCES::_7ZS_SFX.data, RESOURCES::_7ZS_SFX.length);
+//wxMessageBox(wxT("break to get the xor'ed sfx file..."));
         wxCharBuffer configuration_bytes = sfxConfiguration.ToUTF8();
-        outputStream->Write(configuration_bytes, strlen(configuration_bytes.data())); // strlen counts characters until terminating NULL character...
+		outputStream->Write(configuration_bytes, strlen(configuration_bytes.data())); // strlen counts characters until terminating NULL character...
     }
 
     outputStream->Close();
