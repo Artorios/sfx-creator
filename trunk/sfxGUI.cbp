@@ -3,7 +3,6 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="sfxGUI" />
-		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
@@ -71,7 +70,6 @@
 			<Add option="-mthreads" />
 			<Add option="-static-libgcc" />
 			<Add option="-static-libstdc++" />
-			<Add option="--enable-auto-import" />
 			<Add library="libkernel32.a" />
 			<Add library="libuser32.a" />
 			<Add library="libgdi32.a" />
@@ -86,10 +84,6 @@
 			<Add library="libwsock32.a" />
 			<Add library="libodbc32.a" />
 		</Linker>
-		<ExtraCommands>
-			<Add before='bin2hpp.exe &quot;./res&quot;' />
-			<Mode after="always" />
-		</ExtraCommands>
 		<Unit filename="resource.cpp" />
 		<Unit filename="resource.h" />
 		<Unit filename="resource.rc">
