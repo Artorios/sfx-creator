@@ -341,26 +341,36 @@ void sfxGUIDialog::CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString
 
     wxFileOutputStream *outputStream = new wxFileOutputStream(path);
     wxString appPath = wxStandardPaths::Get().GetExecutablePath().BeforeLast('\\');
-    wxByte xorDecode;
 
     if(sfxType == SFX_TYPE_ARCHIVE)
     {
-		for(wxUint32 i=0; i<RESOURCES::_7Z_SFX.length; i++)
-		{
-			xorDecode = RESOURCES::_7Z_SFX.data[i] ^ 'U';
-			outputStream->Write(&xorDecode, 1);
-		}
-//wxMessageBox(wxT("break to get the xor'ed sfx file..."));
+		/*
+		// inflate data to outputstream (to compress sfx module only!)
+		wxZlibOutputStream* zos = new wxZlibOutputStream(outputStream, 9);
+		zos->Write(RESOURCES::_7Z_SFX_ZIP.data, RESOURCES::_7Z_SFX_ZIP.length);
+		wxDELETE(zos);
+		wxMessageBox(wxT("break to get the zlib'ed sfx file..."));
+		*/
+
+    	wxMemoryInputStream mis(RESOURCES::_7Z_SFX_ZIP.data, RESOURCES::_7Z_SFX_ZIP.length);
+    	wxZlibInputStream zis(mis);
+		outputStream->Write(zis);
     }
 
     if(sfxType == SFX_TYPE_INSTALLER)
     {
-		for(wxUint32 i=0; i<RESOURCES::_7ZS_SFX.length; i++)
-		{
-			xorDecode = RESOURCES::_7ZS_SFX.data[i] ^ 'U';
-			outputStream->Write(&xorDecode, 1);
-		}
-//wxMessageBox(wxT("break to get the xor'ed sfx file..."));
+		/*
+		// inflate data to outputstream (to compress sfx module only!)
+		wxZlibOutputStream* zos = new wxZlibOutputStream(outputStream, 9);
+		zos->Write(RESOURCES::_7ZS_SFX_ZIP.data, RESOURCES::_7ZS_SFX_ZIP.length);
+		wxDELETE(zos);
+		wxMessageBox(wxT("break to get the zlib'ed sfx file..."));
+		*/
+
+    	wxMemoryInputStream mis(RESOURCES::_7ZS_SFX_ZIP.data, RESOURCES::_7ZS_SFX_ZIP.length);
+    	wxZlibInputStream zis(mis);
+		outputStream->Write(zis);
+
         wxCharBuffer configuration_bytes = sfxConfiguration.ToUTF8();
 		outputStream->Write(configuration_bytes, strlen(configuration_bytes.data())); // strlen counts characters until terminating NULL character...
     }
