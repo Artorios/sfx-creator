@@ -35,6 +35,7 @@ enum SFX_TYPE
 #include <wx/stdpaths.h>
 #include <wx/mstream.h>
 #include <wx/wfstream.h>
+#include <wx/zstream.h>
 #include <wx/textfile.h>
 
 #include "resource.h"

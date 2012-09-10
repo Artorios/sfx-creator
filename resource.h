@@ -16,10 +16,10 @@ struct RCDATA
 
 struct RESOURCES
 {
-	// File: "D:\- MY DATA -\Software-Projects\7z SFX Creator\trunk\res\7z.sfx"
-	public: static const RCDATA _7Z_SFX;
-	// File: "D:\- MY DATA -\Software-Projects\7z SFX Creator\trunk\res\7zS.sfx"
-	public: static const RCDATA _7ZS_SFX;
+	// File: "D:\- MY DATA -\Software-Projects\7z SFX Creator\trunk\res\7z.sfx.zip"
+	public: static const RCDATA _7Z_SFX_ZIP;
+	// File: "D:\- MY DATA -\Software-Projects\7z SFX Creator\trunk\res\7zS.sfx.zip"
+	public: static const RCDATA _7ZS_SFX_ZIP;
 };
 
 #endif // RESOURCES_H
