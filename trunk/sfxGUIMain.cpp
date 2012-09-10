@@ -69,7 +69,7 @@ sfxGUIDialog::sfxGUIDialog(wxWindow* parent,wxWindowID id)
     wxStaticBoxSizer* StaticBoxSizerAdvanced;
     wxFlexGridSizer* FlexGridSizer6;
 
-    Create(parent, wxID_ANY, _("7z SFX Creator"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("7z SFX-Creator"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX, _T("wxID_ANY"));
     GridBagSizerWindow = new wxGridBagSizer(0, 0);
     GridBagSizerWindow->AddGrowableCol(1);
     GridBagSizerWindow->AddGrowableCol(3);
