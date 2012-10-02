@@ -344,13 +344,13 @@ void sfxGUIDialog::CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString
 
     if(sfxType == SFX_TYPE_ARCHIVE)
     {
-		/*
+/*
 		// inflate data to outputstream (to compress sfx module only!)
 		wxZlibOutputStream* zos = new wxZlibOutputStream(outputStream, 9);
-		zos->Write(RESOURCES::_7Z_SFX_ZIP.data, RESOURCES::_7Z_SFX_ZIP.length);
+		zos->Write(RESOURCES::_7Z_SFX.data, RESOURCES::_7Z_SFX.length);
 		wxDELETE(zos);
 		wxMessageBox(wxT("break to get the zlib'ed sfx file..."));
-		*/
+*/
 
     	wxMemoryInputStream mis(RESOURCES::_7Z_SFX_ZIP.data, RESOURCES::_7Z_SFX_ZIP.length);
     	wxZlibInputStream zis(mis);
@@ -359,13 +359,13 @@ void sfxGUIDialog::CreateFileSfxModule(wxString path, SFX_TYPE sfxType, wxString
 
     if(sfxType == SFX_TYPE_INSTALLER)
     {
-		/*
+/*
 		// inflate data to outputstream (to compress sfx module only!)
 		wxZlibOutputStream* zos = new wxZlibOutputStream(outputStream, 9);
-		zos->Write(RESOURCES::_7ZS_SFX_ZIP.data, RESOURCES::_7ZS_SFX_ZIP.length);
+		zos->Write(RESOURCES::_7ZS_SFX.data, RESOURCES::_7ZS_SFX.length);
 		wxDELETE(zos);
 		wxMessageBox(wxT("break to get the zlib'ed sfx file..."));
-		*/
+*/
 
     	wxMemoryInputStream mis(RESOURCES::_7ZS_SFX_ZIP.data, RESOURCES::_7ZS_SFX_ZIP.length);
     	wxZlibInputStream zis(mis);
